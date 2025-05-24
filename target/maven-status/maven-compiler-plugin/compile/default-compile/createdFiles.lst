@@ -1,0 +1,17 @@
+com\proyectoAPIREST\APIREST_Foto\servicio\PhotoNotificationWebSocketHandler.class
+com\proyectoAPIREST\APIREST_Foto\repositorio\UsuarioRepository.class
+com\proyectoAPIREST\APIREST_Foto\servicio\AzureBlobService.class
+com\proyectoAPIREST\APIREST_Foto\ApirestFotoApplication.class
+com\proyectoAPIREST\APIREST_Foto\configuracion\AzureConfig.class
+com\proyectoAPIREST\APIREST_Foto\DTO\FotoMessage.class
+com\proyectoAPIREST\APIREST_Foto\errorController.class
+com\proyectoAPIREST\APIREST_Foto\configuracion\WebSocketConfig.class
+com\proyectoAPIREST\APIREST_Foto\controlador\TestController.class
+com\proyectoAPIREST\APIREST_Foto\servicio\NotificationService.class
+com\proyectoAPIREST\APIREST_Foto\errorController$ErrorResponse.class
+com\proyectoAPIREST\APIREST_Foto\servicio\QueueListenerService.class
+com\proyectoAPIREST\APIREST_Foto\servicio\PhotoService.class
+com\proyectoAPIREST\APIREST_Foto\controlador\Controlador.class
+com\proyectoAPIREST\APIREST_Foto\entidades\foto.class
+com\proyectoAPIREST\APIREST_Foto\servicio\UsuarioService.class
+com\proyectoAPIREST\APIREST_Foto\entidades\Usuario.class

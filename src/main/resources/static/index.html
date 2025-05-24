@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Fotos</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #333; }
+    .foto-container { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; max-width: 400px; }
+    .foto-container img { max-width: 100%; height: auto; }
+    .nombre-archivo { font-weight: bold; margin-bottom: 5px; }
+    #status { margin-bottom: 15px; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Fotos Subidas</h1>
+  <div id="status">🔌 Conectando al WebSocket…</div>
+  <div id="notifications"></div>
+
+  <script>
+    // Construyo la URL de WS según el origen y el context-path /api
+    const proto = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    const wsUrl = proto + window.location.host + '/api/ws/notifications';
+
+    console.log('🔧 Intentando conectar a:', wsUrl);
+    const socket = new WebSocket(wsUrl);
+
+    socket.onopen = () => {
+      console.log('✅ WebSocket abierto');
+      document.getElementById('status').textContent = '✅ Conectado al WebSocket';
+    };
+
+    socket.onerror = (err) => {
+      console.error('🚨 Error de WebSocket:', err);
+      document.getElementById('status').textContent = '❌ Error de WebSocket (mira la consola)';
+    };
+
+    socket.onclose = (ev) => {
+      console.warn('⚠️ WebSocket cerrado:', ev);
+      document.getElementById('status').textContent = '⚠️ Conexión cerrada';
+    };
+
+    socket.onmessage = (event) => {
+      console.log('📨 Mensaje recibido:', event.data);
+      try {
+        const data = JSON.parse(event.data);
+
+        const div = document.createElement('div');
+        div.className = 'foto-container';
+
+        const name = document.createElement('div');
+        name.className = 'nombre-archivo';
+        name.textContent = `📁 ${data.nombreArchivo}`;
+        div.appendChild(name);
+
+        if (data.contenidoBase64 && data.tipoMime) {
+          const img = document.createElement('img');
+          img.src = `data:${data.tipoMime};base64,${data.contenidoBase64}`;
+          img.alt = data.nombreArchivo;
+          div.appendChild(img);
+        }
+
+        // Prepend para que la última foto salga arriba
+        document.getElementById('notifications').prepend(div);
+      } catch (e) {
+        console.error('❌ JSON parse error:', e);
+      }
+    };
+  </script>
+</body>
+</html>

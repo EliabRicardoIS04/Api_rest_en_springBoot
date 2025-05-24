@@ -1,0 +1,12 @@
+{
+    "Usuario": [
+        {
+            "id": 1,
+            "nombre": "Jesús",
+            "correoE": "jesus@gmail.com",
+            "contraseña": "abc123",
+            "listaContactos": [ "2", "3"]
+        }
+      
+    ]
+}
